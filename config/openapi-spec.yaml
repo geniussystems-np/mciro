@@ -1,0 +1,34 @@
+openapi: 3.0.0
+info:
+  title: Default Service
+  version: '1.0'
+  description: Default API Specification
+  contact:
+    name: Backend Developers
+servers:
+  - url: 'http://localhost:8000'
+    description: dev
+paths:
+  /docs:
+    get:
+      x-micro-handler: App\RouteHandlers\Documentation
+      summary: ''
+      operationId: get-docs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: string
+      description: Get Documentation
+      parameters: []
+      tags:
+        - docs
+components:
+  schemas: {}
+tags:
+  - name: docs
