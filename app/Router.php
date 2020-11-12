@@ -22,7 +22,7 @@ class Router implements RouterContract {
    * Map HTTP Method to ResourceHandler's Method
    */
   protected $methodMap = [
-
+    "SHOW"    => "show",
     "GET"     => "index",
     "POST"    => "store",
     "PUT"     => "update",
@@ -66,7 +66,10 @@ class Router implements RouterContract {
      * We are strictly following /{collection}/{item} pattern.
      * Even URI Segment means we're accessting COLLECTION
      */
-    if(count(explode("/", $request->getUri()->getPath())) % 2 == 1) {
+    if(
+      count(explode("/", $request->getUri()->getPath())) % 2 == 1 &&
+      strtoupper($request->getMethod()) == "GET"
+    ) {
       return $this->methodMap["SHOW"];
     }
 
